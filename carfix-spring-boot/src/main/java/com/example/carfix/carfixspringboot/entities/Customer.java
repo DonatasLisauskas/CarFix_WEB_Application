@@ -40,11 +40,10 @@ public class Customer {
     private String email;
 
     @NonNull
-    @NumberFormat
     @Pattern(regexp = PHONE_NUMBER, message = "Invalid phone format, must be \"Country code +370-00000000 \"")
     @NotBlank(message = "Phone number is mandatory")
     @Column(name = "phoneNumber")
-    private Long phoneNumber;
+    private String phoneNumber;
 
     /*@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Registration> registrations;*/
