@@ -44,7 +44,7 @@ public class Customer {
     @Pattern(regexp = PHONE_NUMBER, message = "Invalid phone format, must be \"Country code +370-00000000 \"")
     @NotBlank(message = "Phone number is mandatory")
     @Column(name = "phoneNumber")
-    private Integer phoneNumber;
+    private Long phoneNumber;
 
     /*@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Registration> registrations;*/

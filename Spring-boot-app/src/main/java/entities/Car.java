@@ -19,7 +19,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "carId")
-    private Integer carId;
+    private Long carId;
 
     @NonNull
     @NotBlank(message = "Series Name is mandatory")

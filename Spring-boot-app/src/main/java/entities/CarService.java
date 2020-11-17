@@ -44,7 +44,7 @@ public class CarService {
     @NumberFormat
     @NotBlank(message = "Employee number is mandatory")
     @Column(name = "employeesNum")
-    private Integer employeesNum;
+    private Long employeesNum;
 
   /*  @OneToMany(mappedBy = "carService")
     private List<Work> works;
