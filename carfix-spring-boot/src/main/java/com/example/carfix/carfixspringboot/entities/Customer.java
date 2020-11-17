@@ -21,7 +21,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerId")
-    private Long customerId;
+    private Long id;
 
     @NonNull
     @NotBlank(message = "Name is mandatory")
