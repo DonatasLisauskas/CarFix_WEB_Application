@@ -42,6 +42,9 @@ export class AddCustomerComponent implements OnInit {
     } else {
       this.bindValues();
       this.create();
+      setTimeout(() => {
+        this.router.navigate(['/customers']);
+      }, 5000);
     }
   }
 
