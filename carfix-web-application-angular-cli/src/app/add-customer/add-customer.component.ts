@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from '../entities/CustomerEntity/customer';
 
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomerService} from '../servicies/customerService/customer.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -60,9 +60,6 @@ export class AddCustomerComponent implements OnInit {
       .subscribe(data => console.log(data), error => console.log(error));
     this.customer = new Customer();
   }
-
-
-
 }
 
 
