@@ -1,101 +1,47 @@
-<!--
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3" [hidden]="registerForm.valid && submitted">
-        <h3>Angular 7 Reactive Form Validation</h3>
-        <form [formGroup]="registerForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-6 offset-md-3" [hidden]="registerForm.valid && submitted ">
+        <h3>Fill the new Customer Form</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" method="post">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" formControlName="firstName"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
-            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            <input type="text" formControlName="firstName"  class="form-control" [ngClass]="{ 'is-invalid': f.firstName.touched && f.firstName.errors }"/>
+            <div *ngIf="f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.touched  || submitted && f.firstName.errors.required">First Name is required</div>
             </div>
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': f.lastName.touched && f.lastName.errors }" />
+            <div *ngIf="f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.touched && f.lastName.errors.required">Last Name is required</div>
             </div>
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-              <div *ngIf="f.email.errors.required">Email is required</div>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': f.email.touched && f.email.errors }" />
+            <div *ngIf="f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.touched && f.email.errors.required">Email is required</div>
               <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
             </div>
           </div>
           <div class="form-group">
             <label>Phone Number</label>
-            <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-            <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-              <div *ngIf="f.phoneNumber.errors.required">Phone number is required</div>
-              <div *ngIf="f.phoneNumber.errors">Invalid phone format, must be +370-00000000</div>
+            <input type="text" formControlName="phoneNumber" class="form-control" [ngClass]="{ 'is-invalid': f.phoneNumber.touched && f.phoneNumber.errors }" />
+            <div *ngIf="f.phoneNumber.errors" class="invalid-feedback">
+              <div *ngIf="f.phoneNumber.touched && f.phoneNumber.errors.required">Phone number is required</div>
+              <div *ngIf="f.phoneNumber.errors.pattern">Invalid phone format, must be +370-00000000</div>
             </div>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary" type="submit" *ngIf="registerForm.invalid">Register</button>
+            <button type="submit" class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">Register</button>
           </div>
         </form>
       </div>
-      <div [hidden]="registerForm.invalid">
+      <div *ngIf="submitted && registerForm.valid">
         <h4>You submitted successfully!</h4>
       </div>
     </div>
   </div>
 </div>
--->
-<div>
-
-
-  <form #f="ngForm" method="post" novalidate (ngSubmit)="onSubmit()">
-
-    <div class="form-group">
-
-      <label for="firstName">First Name</label>
-      <input name="firstName" type="text" class="form-control" id="firstName"
-             [(ngModel)]="customer.firstName" #nf="ngModel" required>
-      <!--  Showing form errors on submit -->
-      <div [hidden]="nf.untouched" class="alert alert-danger">
-        Please don't leave the value empty
-      </div>
-
-      <label for="lastName">Last Name</label>
-      <input name="lastName" type="text" class="form-control" id="lastName"
-             [(ngModel)]="customer.lastName" #nl="ngModel" required>
-      <!--  Showing form errors when user leaves the input field -->
-      <div [hidden]="nl.untouched" class="alert alert-danger">
-        Please don't leave the value empty
-      </div>
-
-      <label for="email">Email</label>
-      <input name="email" type="email" class="form-control" id="email"
-             [(ngModel)]="customer.email" #nE="ngModel" required>
-      <!--  Showing form errors when user leaves the input field -->
-      <div [hidden]="nE.untouched" class="alert alert-danger">
-        Please don't leave the value empty
-      </div>
-
-      <label for="phoneNumber">Phone Number</label>
-      <input name="phoneNumber" type="text" class="form-control" id="phoneNumber"
-             [(ngModel)]="customer.phoneNumber" #nPN="ngModel" required>
-      <!--  Showing form errors when user leaves the input field -->
-      <div [hidden]="nPN.untouched" class="alert alert-danger">
-        Please don't leave the value empty
-      </div>
-    </div>
-    <!-- Showing HTTP error after submit -->
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  <div [hidden]="!postError" class="alert alert-danger">{{ postErrorMsg }}</div>
-  f.value  {{ f.value | json }}<br>
-  f.valid {{ f.valid | json }}<br>
-  f.submitted {{ f.submitted | json }}<br>
-  f.touched  {{ f.touched | json }}<br>
-  f.dirty {{ f.dirty | json }}<br>
-</div>
-
-
