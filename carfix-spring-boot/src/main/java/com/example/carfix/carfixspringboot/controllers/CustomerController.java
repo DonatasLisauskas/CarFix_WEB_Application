@@ -6,12 +6,18 @@ import com.example.carfix.carfixspringboot.repositories.CustomerRepository;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -49,13 +55,21 @@ public class CustomerController {
 
 
     @PostMapping(value = "/customers/create")
-    public Customer createCustomer(@RequestBody Customer customer) {
-        LOGGER.info("Creating new entry...");
-        return customerRepository.save(new Customer(
-                customer.getFirstName(),
-                customer.getLastName(),
-                customer.getEmail(),
-                customer.getPhoneNumber()));
+    public ResponseEntity<Object> createCustomer(@RequestBody @Valid Customer customer, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<String> errors = result.getAllErrors().stream()
+                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                    .collect(Collectors.toList());
+            return new ResponseEntity<>(errors, HttpStatus.OK);
+        } else {
+            LOGGER.info("Creating new entry...");
+            Customer customer1 = customerRepository.save(new Customer(
+                    customer.getFirstName(),
+                    customer.getLastName(),
+                    customer.getEmail(),
+                    customer.getPhoneNumber()));
+            return new ResponseEntity<>(customer1, HttpStatus.OK);
+        }
     }
 
     @DeleteMapping(value = "/customers/delete/{id}")

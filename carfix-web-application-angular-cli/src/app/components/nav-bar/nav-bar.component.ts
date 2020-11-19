@@ -11,7 +11,6 @@ export class NavBarComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.rout = this.activatedRoute.routeConfig.outlet;
   }
 
   openNav(): void {

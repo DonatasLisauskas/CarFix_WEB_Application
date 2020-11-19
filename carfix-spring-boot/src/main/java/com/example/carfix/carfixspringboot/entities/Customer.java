@@ -33,14 +33,14 @@ public class Customer {
     @Column(name = "lastName")
     private String lastName;
 
-    @Email
+    @Email(message = "Invalid Email!")
     @NonNull
     @NotBlank(message = "Email is mandatory")
     @Column(name = "email")
     private String email;
 
     @NonNull
-    @Pattern(regexp = PHONE_NUMBER, message = "Invalid phone format, must be \"Country code +370-00000000 \"")
+    @Pattern(regexp = PHONE_NUMBER, message = "Invalid phone format, must be +370-00000000")
     @NotBlank(message = "Phone number is mandatory")
     @Column(name = "phoneNumber")
     private String phoneNumber;

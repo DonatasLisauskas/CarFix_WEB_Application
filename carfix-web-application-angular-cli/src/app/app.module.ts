@@ -7,18 +7,25 @@ import {HttpClientModule} from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {RoutingModule} from './routing/routing.module';
 import {RouterModule} from '@angular/router';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomersComponent,
     NavBarComponent,
+    AddCustomerComponent,
+    CustomerEditorComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RoutingModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
