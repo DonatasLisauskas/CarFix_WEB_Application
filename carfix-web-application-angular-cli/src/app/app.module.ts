@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
+import {authInterceptorProviders} from "./services/interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { CustomerEditorComponent } from './customer-editor/customer-editor.compo
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
