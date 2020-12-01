@@ -22,6 +22,6 @@ public class AuthenticationEntryPointJwt implements AuthenticationEntryPoint {
 
         logger.error("Unauthorized error: {}",authenticationException.getMessage());
 
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error 401: Unauthorized");
+        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid Username or password!");
     }
 }
