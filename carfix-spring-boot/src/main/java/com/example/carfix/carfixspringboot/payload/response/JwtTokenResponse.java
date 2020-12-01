@@ -27,13 +27,13 @@ public class JwtTokenResponse {
     private String lastname;
 
     @NonNull
-    private String username;
-
-    @NonNull
     private String email;
 
     @NonNull
     private String phoneNumber;
+
+    @NonNull
+    private String username;
 
     @NonNull
     private String password;
