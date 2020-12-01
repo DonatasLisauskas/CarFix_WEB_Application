@@ -8,8 +8,10 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CustomerEditorComponent } from './customer-editor/customer-editor.component';
 import { UserRegistrationComponent } from './components/user_registration/user-registration.component';
-import { HomeComponent } from './components/home/home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import {authInterceptorProviders} from './services/interceptor/auth.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import {authInterceptorProviders} from './services/interceptor/auth.interceptor'
     CustomerEditorComponent,
     UserRegistrationComponent,
     HomeComponent,
+    ProfileComponent,
+    UserLoginComponent,
   ],
   imports: [
     BrowserModule,
