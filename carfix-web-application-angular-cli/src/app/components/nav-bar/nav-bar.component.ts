@@ -11,7 +11,7 @@ export class NavBarComponent implements OnInit {
   isLoggedIn = false;
   showAdminBoard = false;
   showModeratorBoard = false;
-  username: string;
+  profile: string;
 
   constructor(private tokenService: TokenService) { }
 
@@ -21,9 +21,9 @@ export class NavBarComponent implements OnInit {
     if (this.isLoggedIn) {
       const user = this.tokenService.getUser();
       this.roles = user.roles;
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      this.username = user.username;
+      /*this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');*/
+      this.profile = user.username;
     }
   }
 
