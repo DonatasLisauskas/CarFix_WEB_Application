@@ -39,10 +39,8 @@ export class UserRegistrationComponent implements OnInit {
       const matchingControl = formGroup.controls[matchingControlName];
 
       if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-        // return if another validator has already found an error on the matchingControl
         return;
       }
-      // set error on matchingControl if validation fails
       if (control.value !== matchingControl.value) {
         matchingControl.setErrors({mustMatch: true});
       } else {
@@ -51,7 +49,6 @@ export class UserRegistrationComponent implements OnInit {
     };
   }
 
-  // convenience getter for easy access to form fields
   get f(): { [p: string]: AbstractControl } {
     return this.registerForm.controls;
   }
@@ -65,11 +62,6 @@ export class UserRegistrationComponent implements OnInit {
       this.create();
       this.isSignUpFailed = false;
       this.errorMessage = '';
-     /* if (this.isSignUpFailed === false) {
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-        }, 5000);
-      }*/
     }
   }
 
