@@ -1,82 +1,31 @@
-<!--
-<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+  <div>
+    <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['customers/new']" >Add</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown link
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <a class="nav-link" href="#">CarFix</a>
         </li>
       </ul>
     </div>
+  </div>
   <div>
-    <div id="mySidenav" class="sidenav" >
-      <a class="closebtn" (click)="closeNav()">&times;</a>
-      <a>Customers</a>
-      <a>Car</a>
-      <a>Car Service</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav" *ngIf="!isLoggedIn">
+        <li class="nav-item active">
+          <a class="nav-link active" [routerLink]="['signIn']">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="['registration']">Sign Up</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a class="nav-link active" [routerLink]="['profile']">{{profile}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" style="cursor: pointer" (click)="logout()">Log Out</a>
+        </li>
+      </ul>
     </div>
-    <span (click)="openNav()" style="cursor: pointer" title="Select Database">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M22 15.055v2.458c0 1.925-4.655 3.487-10 3.487-5.344 0-10-1.562-10-3.487v-2.458c2.418 1.738 7.005 2.256 10 2.256 3.006 0 7.588-.523 10-2.256zm-10-12.055c-5.344 0-10 1.486-10 3.32s4.656 3.32 10 3.32c5.345 0 10-1.486 10-3.32s-4.655-3.32-10-3.32zm0 8.64c-3.006 0-7.588-.523-10-2.256v2.44c0 1.926 4.656 3.487 10 3.487 5.345 0 10-1.562 10-3.487v-2.44c-2.418 1.738-7.005 2.256-10 2.256z"/></svg>
-  </span>
   </div>
 </nav>
-<router-outlet></router-outlet>
--->
-
-<div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">CarFix</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['home']">Home </a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['registration']">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="login">Login</a>
-      </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="profile">{{ username }}</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="logout()">LogOut</a>
-      </li>
-    </ul>
-  </nav>
-
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
