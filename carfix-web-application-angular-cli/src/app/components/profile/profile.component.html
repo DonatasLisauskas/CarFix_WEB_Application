@@ -1,0 +1,29 @@
+<div class="container" *ngIf="loggedIn">
+  <header class="jumbotron">
+    <h3>
+      <strong>{{user.username}}</strong> Profile
+    </h3>
+  </header>
+  <p>
+    <strong>Firstname:</strong>
+    {{user.firstname}}
+  </p>
+  <p>
+    <strong>Lastname:</strong>
+    {{user.lastname}}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ user.email }}
+  </p>
+  <p>
+    <strong>Phone:</strong>
+    {{user.phoneNumber}}
+  </p>
+  <strong>Roles:</strong>
+  <ul>
+    <li *ngFor="let role of roles">
+      {{ role }}
+    </li>
+  </ul>
+</div>
