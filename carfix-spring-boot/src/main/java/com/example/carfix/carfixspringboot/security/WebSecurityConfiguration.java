@@ -55,10 +55,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/authorization/**").permitAll()
-                .antMatchers("/api/carfix/**").permitAll()
-                .anyRequest().authenticated();
-
+                .authorizeRequests().antMatchers("/api/authorization/**").authenticated()
+                .antMatchers("/api/carfix/user").authenticated()
+                .antMatchers("/api/carfix/mod").authenticated()
+                .antMatchers("/api/carfix/admin").authenticated()
+                .antMatchers("/api/carfix/all").permitAll();
         httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
