@@ -55,11 +55,25 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/authorization/**").authenticated()
+                .authorizeRequests().antMatchers("/api/authorization/**").permitAll()
                 .antMatchers("/api/carfix/user").authenticated()
                 .antMatchers("/api/carfix/mod").authenticated()
                 .antMatchers("/api/carfix/admin").authenticated()
-                .antMatchers("/api/carfix/all").permitAll();
+                .antMatchers("/api/carfix/all").permitAll()
+                .anyRequest().authenticated();
         httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+    /*@Override
+    public void configure(HttpSecurity httpSecurity) throws Exception {
+
+        httpSecurity.cors().and().csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests().antMatchers("/api/authorization/**").permitAll()
+                .antMatchers("/api/carfix/**").permitAll()
+                .anyRequest().authenticated();
+
+        httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }*/
 }
